@@ -1,0 +1,104 @@
+\documentclass[12pt,a4paper]{report}
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+
+% Différentes options pour la classe :
+% - taille de la fonte    : 10pt, 11pt, 12pt
+% - recto ou recto-verso    : oneside, twoside
+% - stade de développement    : draft, final
+
+
+\usepackage[french]{babel}
+%\usepackage[latin1]{inputenc}    % Pour utiliser les lettres accentuées
+
+%\usepackage[utf8]{inputenc}%           gestion des accents (source)
+\usepackage[T1]{fontenc}%              gestion des accents (PDF)
+%\usepackage[francais,english]{babel}%          gestion du français
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}%                 caractères additionnels
+
+\usepackage[pdftex]{graphicx}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage[french]{varioref}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{amsmath}
+\usepackage{ifpdf} % part of the hyperref bundle
+\usepackage{array} 
+
+
+%\usepackage{abstract}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\renewcommand{\listtablename}{Tables}
+
+
+
+ % set fonts for nicer pdf view
+ \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+
+\pagestyle{fancy}
+% Redéfinir chaptermark pour n'afficher que "Chapitre I"
+\renewcommand{\chaptermark}[1]{\markboth{Chapitre \thechapter}{}}
+
+\fancyhead[L]{\nouppercase\leftmark} % "Chapitre I" ou "Chapitre II"\fancyhead[C]{}
+\fancyhead[R]{\nouppercase\rightmark} %pour afficher le nom de la section à droite
+
+\usepackage{float}
+
+\fancyfoot[L]{}
+\fancyfoot[C]{}
+\fancyfoot[R]{\textbf{\thepage}}
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+% ===== Numerotation romaine des chapitres =====
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+% Sections sans numéro de chapitre
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\arabic{section}.\arabic{subsection}.\arabic{subsubsection}}
+% Début du document
+\begin{document}
+
+\include{garde_fin}
+\include{garde_fin1}
+
+\newpage
+\pagenumbering{roman}
+
+\tableofcontents     % Table of Contents
+\listoffigures        % Liste des figures
+\listoftables        % Liste des tableaux
+%\include{Acro}
+
+\newpage
+\pagenumbering{arabic}
+\include{Introduction}
+\include{Chapter1}
+
+\include{Chapter2}
+
+%\include{Chapter3}
+
+%\include{Chapter4}
+
+\include{Conclusion}
+
+\bibliographystyle{alpha}
+\bibliography{references}% fichier references.bib
+\addcontentsline{toc}{chapter}{Bibliographie}% ajouter son entrée dans la table
+%\include{Acro}
+\pagestyle{empty}
+
+
+
+% (\renewcommand{\listtablename}{Tables} moved to preamble)
+
+
+% Fin du document
+\end{document}
